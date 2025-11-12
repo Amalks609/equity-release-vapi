@@ -42,9 +42,9 @@ export const useVapi = (config: VapiConfig) => {
     vapiInstance.on('error', handleError);
 
     return () => {
-      vapiInstance.off('call-start', handleCallStart);
-      vapiInstance.off('call-end', handleCallEnd);
-      vapiInstance.off('error', handleError);
+      vapiInstance.removeListener('call-start', handleCallStart);
+      vapiInstance.removeListener('call-end', handleCallEnd);
+      vapiInstance.removeListener('error', handleError);
     };
   }, [config.publicKey, config.baseUrl]);
 
